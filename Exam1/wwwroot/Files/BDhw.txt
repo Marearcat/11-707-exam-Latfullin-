@@ -1,0 +1,14 @@
+*РА
+-Task1 (Х - переменная)
+[User.Name, Group.Head]
+(([User.Id=Group.AdminId])([Group.Rep < X](Group) * User))
+-Task2 (X, Y - переменная)
+[Group.Head, Group.Description]
+([Group1.Id = Group2.Id]([Id, Head, Desc]Group * ([GroupId]Group - ([GroupId](UserToGroup * [Rep < b]User))) * [Group.Rep > X](Group)))
+*РИК
+-Task1 (Х - переменная)
+Найти{u.Name, g.Head | u as User, g as Group}
+(g.AdminId = u.Id & g.Rep < X)
+-Task2 (X, Y - переменная)
+Найти{g.Head, g.Description | g as Group}
+((g.Rep > X) & (EXISTS utg as UserToGroup(NOT EXISTS u as User(u.Rep < Y & u.Id = utg.UserId) & g.Id = utg.GroupId)))

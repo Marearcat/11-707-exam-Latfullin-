@@ -1,0 +1,25 @@
+﻿@model Exam1.ViewModels.FileViewModel;
+@{
+    ViewData["Title"] = "Push";
+}
+
+<h1>Push</h1>
+<h3>Выберите файл для загрузки</h3>
+<form asp-action="Push" asp-controller="File" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="ShortDesc" class="control-label">ShortDesc</label>
+        <input type="text" asp-for="ShortDesc" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Desc" class="control-label">Description</label>
+        <input type="text" asp-for="Desc" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="UploadedFile" class="control-label">File</label>
+        <input type="file" asp-for="UploadedFile" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Push" class="btn btn-default" />
+    </div>
+</form>
