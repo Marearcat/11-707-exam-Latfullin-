@@ -75,7 +75,7 @@ namespace Exam1.Controllers
         public IActionResult Pull(int id)
         {
             var file = context.Files.First(x => x.Id == id);
-            return PhysicalFile(file.Path, file.Type);
+            return PhysicalFile(_appEnvironment.WebRootPath + file.Path, file.Type, file.Name);
         }
     }
 }
