@@ -41,8 +41,15 @@ namespace Exam1.Controllers
                 {
                     await file.UploadedFile.CopyToAsync(fileStream);
                 }
-                FileModel newFile = new FileModel { Name = file.UploadedFile.FileName, Path = path, ShortDesc = file.ShortDesc, Desc = file.Desc, Type = file.UploadedFile.ContentType };
-                context.Files.Add(newFile);
+                if(file.Key == null)
+                {
+                    FileModel newFile = new FileModel { Name = file.UploadedFile.FileName, Path = path, ShortDesc = file.ShortDesc, Desc = file.Desc, Type = file.UploadedFile.ContentType };
+                    context.Files.Add(newFile);
+                }
+                else
+                {
+                    KeyFileModel newFile = new KeyFileModel { Name = file.UploadedFile.FileName, Path = path, ShortDesc = file.ShortDesc, Desc = file.Desc, Type = file.UploadedFile.ContentType, Key = file.Key };
+                }
                 context.SaveChanges();
             }
             return RedirectToAction("Index", "Home");
