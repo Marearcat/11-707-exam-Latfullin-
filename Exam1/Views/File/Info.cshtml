@@ -1,0 +1,19 @@
+﻿@model FileModel
+@{
+    ViewData["Title"] = "Info";
+}
+
+<h1>Info</h1>
+<h3>@Model.Name</h3><br />
+<p>@Model.ShortDesc</p><br />
+<p>@Model.Desc</p><br />
+<form asp-action="Pull" asp-controller="File" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+     <label id="id" class="control-label">id</label>
+     <input type="hidden" id="id" value="@Model.Id" class="form-control" />
+    </div>
+    <div class="form-group">
+     <input type="submit" value="Pull" class="btn btn-default" />
+    </div>
+</form>

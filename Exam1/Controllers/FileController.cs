@@ -41,11 +41,41 @@ namespace Exam1.Controllers
                 {
                     await file.UploadedFile.CopyToAsync(fileStream);
                 }
-                FileModel newFile = new FileModel { Name = file.UploadedFile.FileName, Path = path, ShortDesc = file.ShortDesc, Desc = file.Desc };
+                FileModel newFile = new FileModel { Name = file.UploadedFile.FileName, Path = path, ShortDesc = file.ShortDesc, Desc = file.Desc, Type = file.UploadedFile.ContentType };
                 context.Files.Add(newFile);
                 context.SaveChanges();
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult Index()
+        {
+            List<FileIndexViewModel> model = new List<FileIndexViewModel>();
+            foreach (var file in context.Files)
+                model.Add(new FileIndexViewModel { Id = file.Id, Name = file.Name, ShortDesc = file.ShortDesc });
+            
+            return View(model.AsEnumerable());
+        }
+
+        [HttpGet]
+        public IActionResult Info(int id)
+        {
+            try
+            {
+                return View(context.Files.First(x => x.Id == id));
+            }
+            catch
+            {
+                return RedirectToAction("Index", "File");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Pull(int id)
+        {
+            var file = context.Files.First(x => x.Id == id);
+            return PhysicalFile(file.Path, file.Type);
         }
     }
 }

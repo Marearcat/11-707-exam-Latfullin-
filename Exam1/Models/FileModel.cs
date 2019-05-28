@@ -14,5 +14,6 @@ namespace Exam1.Models
         public string ShortDesc { get; set; }
         public string Desc { get; set; }
         public string Path { get; set; }
+        public string Type { get; set; }
     }
 }

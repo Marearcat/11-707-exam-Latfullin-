@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Exam1.ViewModels.FileIndexViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<a href="~/File/Push">Push new</a>
+<br />
+@foreach(var file in Model)
+{
+    <a href="~/File/Info+@file.Id">
+    @file.Name<br />
+    @file.ShortDesc<br />
+    </a>
+}
