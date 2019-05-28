@@ -36,5 +36,7 @@ namespace Exam2.Controllers
             context.SaveChanges();
             return RedirectToAction("Index", "Restaurant");
         }
+
+
     }
 }

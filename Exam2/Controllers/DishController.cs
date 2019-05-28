@@ -1,5 +1,6 @@
 ﻿using Exam2.Data;
 using Exam2.Models;
+using Exam2.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,21 @@ namespace Exam2.Controllers
         {
             context.Dishes.Add(dish);
             context.SaveChanges();
-            return RedirectPermanent("~/Dish/Index");
+            return RedirectPermanent("~/Dish/Index?restId=" + dish.RestId);
+        }
+
+        [HttpGet]
+        public IActionResult Info(string id)
+        {
+            var dish = context.Dishes.First(x => x.Id == id);
+            var model = new DishView()
+            {
+                Name = dish.Name,
+                Cost = dish.Cost,
+                Desc = dish.Description,
+                Rest = context.Restaurants.First(x => x.Id == dish.RestId).Name
+            };
+            return View(model);
         }
     }
 }

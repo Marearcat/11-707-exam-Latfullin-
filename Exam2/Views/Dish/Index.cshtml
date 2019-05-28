@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Exam2.Models.Dish>;
 
-<a href="~/Dish/Create">Create</a><br />
+<a href="~/Dish/Create?restId=@ViewData["RestId"]">Create</a><br />
 @foreach(var dish in Model)
 {
     <a href="~/Dish/Info?id=@dish.Id">@dish.Name</a>
