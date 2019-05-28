@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewData["Title"] = "KeyInfo";
+}
+
+<h1>KeyInfo</h1>
+@model FileModel
+@{
+    ViewData["Title"] = "Info";
+}
+
+<h1>Info</h1>
+<h3>@Model.Name</h3><br />
+<label>@Model.ShortDesc</label><br />
+<label>@Model.Desc</label><br />
+<form asp-action="KeyPull" asp-controller="File" method="get">
+    <div asp-validation-summary="All" class="text-danger"></div>
+     <div class="form-group">
+        <input type="hidden" name="id" value="@Model.Id"  class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="text" name="key" value=""  class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Pull" class="btn btn-default" />
+    </div>
+</form>

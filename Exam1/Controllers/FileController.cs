@@ -68,14 +68,20 @@ namespace Exam1.Controllers
         [HttpGet]
         public IActionResult Info(int id)
         {
-            try
-            {
+            if (context.Files.Any(x => x.Id == id))
                 return View(context.Files.First(x => x.Id == id));
-            }
-            catch
-            {
-                return RedirectToAction("Index", "File");
-            }
+            if (context.KeyFiles.Any(x => x.Id == id))
+                return RedirectPermanent("~/File/KeyInfo?id=" + id);
+
+            return RedirectToAction("Index", "File");
+        }
+
+        [HttpGet]
+        public IActionResult KeyInfo(int id)
+        {
+            if (context.KeyFiles.Any(x => x.Id == id))
+                return View(context.KeyFiles.First(x => x.Id == id));
+            return RedirectToAction("Index", "File");
         }
 
         [HttpGet]
@@ -83,6 +89,15 @@ namespace Exam1.Controllers
         {
             var file = context.Files.First(x => x.Id == id);
             return PhysicalFile(_appEnvironment.WebRootPath + file.Path, file.Type, file.Name);
+        }
+
+        [HttpGet]
+        public IActionResult KeyPull(int id, string key)
+        {
+            var file = context.KeyFiles.First(x => x.Id == id);
+            if(file.Key == key)
+                return PhysicalFile(_appEnvironment.WebRootPath + file.Path, file.Type, file.Name);
+            return RedirectPermanent("~/File/KeyInfo?id=" + id);
         }
     }
 }

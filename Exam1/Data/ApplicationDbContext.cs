@@ -13,7 +13,7 @@ namespace Exam1.Data
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
-
         public DbSet<FileModel> Files { get; set; }
+        public DbSet<KeyFileModel> KeyFiles { get; set; }
     }
 }
