@@ -10,7 +10,9 @@ namespace Exam2.Models
     {
         [Key]
         public string Id { get; set; }
+        public string RestId { get; set; }
         public string Name { get; set; }
         public int Cost { get; set; }
+        public string Description { get; set; }
     }
 }

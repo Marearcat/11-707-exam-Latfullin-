@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Restaurant>;
+
+
+<a href="~/Restaurant/Create">Create</a><br />
+@foreach(var rest in Model)
+{
+    <a href="~/Dish/Index?restId=@rest.Id">@rest.Name</a><br />
+}

@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Exam2.Models
 {
-    public class Cart
+    public class Restaurant
     {
         [Key]
         public string Id { get; set; }
-        public string UserId { get; set; }
-        public int Cost { get; set; }
+        public string Name { get; set; }
     }
 }

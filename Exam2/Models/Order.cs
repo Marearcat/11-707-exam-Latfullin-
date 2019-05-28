@@ -11,7 +11,6 @@ namespace Exam2.Models
         [Key]
         public string Id { get; set; }
         public string UserId { get; set; }
-        public List<string> DishesId { get; set; }
         public int Cost { get; set; }
         public DateTime Time { get; set; }
     }
